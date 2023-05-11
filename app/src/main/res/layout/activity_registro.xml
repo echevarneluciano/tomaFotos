@@ -10,10 +10,10 @@
         android:id="@+id/btGuardar"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="84dp"
         android:text="Guardar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -77,9 +77,19 @@
         android:id="@+id/btFoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="16dp"
         android:text="Tomar foto"
         app:layout_constraintBottom_toTopOf="@+id/btGuardar"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="84dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

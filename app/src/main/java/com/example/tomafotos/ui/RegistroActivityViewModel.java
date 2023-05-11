@@ -3,6 +3,8 @@ package com.example.tomafotos.ui;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -21,6 +23,7 @@ public class RegistroActivityViewModel extends AndroidViewModel {
     private Usuario usuario;
     private File archivo;
     private MutableLiveData<Usuario> usuarioLiveData;
+    private MutableLiveData<Bitmap> fotoLiveData;
 
     public RegistroActivityViewModel(@NonNull Application application) {
         super(application);
@@ -33,6 +36,13 @@ public class RegistroActivityViewModel extends AndroidViewModel {
             this.usuarioLiveData = new MutableLiveData<>();
         }
         return this.usuarioLiveData;
+    }
+
+    public LiveData<Bitmap> cargarFoto(){
+        if(this.fotoLiveData == null){
+            this.fotoLiveData = new MutableLiveData<>();
+        }
+        return this.fotoLiveData;
     }
 
     public void setUsuario(String dni, String apellido, String nombre, String mail, String pass){
@@ -50,6 +60,13 @@ public class RegistroActivityViewModel extends AndroidViewModel {
     public void setPerfil(Boolean bool){
         if(bool) {
             //usuario = ApiClient.leer(context);
+            File imagen =new File(context.getFilesDir(),"foto1.png");
+            Bitmap imageBitmap= BitmapFactory.decodeFile(imagen.getAbsolutePath());
+
+            if(imageBitmap!=null) {
+                this.fotoLiveData.setValue(imageBitmap);
+            }
+
             usuario = ApiClient.leer(archivo);
             this.usuarioLiveData.setValue(usuario);
         }

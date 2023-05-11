@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 
@@ -43,6 +44,13 @@ public class RegistroActivity extends AppCompatActivity {
                 binding.etDni.setText(usuario.getDni()+"");
                 binding.etMail.setText(usuario.getMail()+"");
                 binding.etPass.setText(usuario.getPass()+"");
+            }
+        });
+
+        mv.cargarFoto().observe(this, new Observer<Bitmap>() {
+            @Override
+            public void onChanged(Bitmap bitmap) {
+                binding.ivFoto.setImageBitmap(bitmap);
             }
         });
 

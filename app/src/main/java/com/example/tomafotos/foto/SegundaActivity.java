@@ -6,17 +6,24 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.tomafotos.R;
+import com.example.tomafotos.databinding.ActivitySegundaBinding;
 
 public class SegundaActivity extends AppCompatActivity {
     private ImageView fotoLeer;
+    private ActivitySegundaBinding binding;
     private SegundaActivityViewModel vm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_segunda);
+        //setContentView(R.layout.activity_segunda);
+        binding=ActivitySegundaBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(SegundaActivityViewModel.class);
         fotoLeer=findViewById(R.id.fotoLeer);
 
@@ -26,6 +33,14 @@ public class SegundaActivity extends AppCompatActivity {
                 fotoLeer.setImageBitmap(bitmap);
             }
         });
+
+        binding.btOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vm.guardarFoto();
+            }
+        });
+
         vm.cargar();
         //Puedo mostrar la foto con el codigo que se encuentra comentado más abajo.
 
